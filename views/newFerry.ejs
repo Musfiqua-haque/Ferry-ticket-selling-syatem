@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Selling</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;500&display=swap');
+        body
+        {
+            font-family: 'Oswald', sans-serif;
+        }
+        .input
+        {
+            border-radius: 10px;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%;background-color: aqua; height: 45px;">
+        <h3 class="text-center">Ticket Selling</h3>
+    </div>
+    <div class="container">
+        <div class="leftDiv" style="float: left;width: 55%;background-color: darkgray;height: 80vh;">
+            <div class="row"style="padding: 10px;">
+                <div class="col" >
+                    <form action="/ticket" method="post">
+                        <center>
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Ticket For</h5>
+                                    <select name="tickeFor" class="ticketFor form-select" id="ticketFor" onchange="show()">
+                                        <option value="">--Choose Option--</option>
+                                        <option value="Bus">Bus</option> 
+                                        <option value="Truck">Truck</option>
+                                        <option value="Microbus">Microbus</option>
+                                        <option value="Motorbike">Motorbike</option>
+                                        <option value="Passanger">Passanger</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <h5>Route Name</h5>
+                                    <select name="routeName" id="routeName" class="form-select" style="width: 80%;" >
+                                        <option value="">--Choose Option--</option>
+                                        <% if(routeName.length>0){ %>
+                                            <% for(let i=0;i<routeName.length;i++){ %>
+                                                <option value="<%= routeName[i].routeName %>"><%= routeName[i].routeName %></option>
+                                            <%}%>
+                                        <%}%>
+                                    </select>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col" >
+                                        <div id="vehicleInfoInput" style="display: none;">
+                                            <h5>Vehicle info</h5>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" name="vehicleName" id="" class="form-control" placeholder="vehicleName">
+                                                <label for="" class="form-label">Vehicle Name</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" name="vehicleNumber" id="" class="form-control" placeholder="vehicleNumber">
+                                                <label for="" class="form-label">Vahicle Number</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="number" name="vehicleQuantity" id="" class="form-control" placeholder="quantity">
+                                                <label for="" class="form-label">Quantity</label>
+                                            </div>
+                                            <h5>Date</h5>
+                                            <input type="date" name="dateForVehicle" id="" class="form-control">
+                                        </div>
+                                        <div id="passangerInfoInput" style="display: none;">
+                                            <h5>Passanger info</h5>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" name="passangerName" class="form-control" id="floatingInput" placeholder="Name">
+                                                <label for="floatingInput">Name</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="tel" name="passangerNumber" id="" pattern="[0-9]{11}" class="form-control" placeholder="passangerNumber">
+                                                <label for="" class="form-label">Contact</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="number" name="passangerQuantity" id="" class="form-control" placeholder="quantity">
+                                                <label for="" class="form-label">Quantity</label>
+                                            </div>
+                                            <h5>Date</h5>
+                                            <input type="date" name="passangerDate" id="passangerDate" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <h5>Time Schedule</h5>
+                                        <select name="timeSchedule" id="timeSchedule" class="form-select ms-2"  style="width: 90%;" onchange="fatchData()">
+                                        <option value="">--Choose Option--</option>
+                                            <% if(times.length>0){ %>
+                                                <% for(let i=0;i<times.length;i++){ %>
+                                                    <option value="<%= times[i].timeSchedule%>"><%= times[i].timeSchedule%></option>
+                                                <%}%>
+                                            <%}%>
+                                        </select>
+
+
+                                        <h5>Ferry Name</h5>
+
+                                        <select name="ferryName" id="ferryName" class="form-select ms-2"  style="width: 90%;" onchange="fatchSpace()">
+                                            <option value="">--Choose Option--</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </center>
+                        <span><button onclick="printTicket()"class="btn btn-outline-success mt-4" style="display: none;" >Print Page</button></span>
+                        <span><button type="submit"  class="btn btn-primary mt-2" style="margin-left: 84%; display: none;">Submit</button></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="rightDiv" style="float: right;width: 40%;background-color: darkgray;min-height: 80vh;">
+            <center>
+                <br>
+                <br>
+               
+                <h4>Available Space for Bus</h4>
+                <input type="text" id="busSpace" disabled class="input mb-4">
+                <h4>Available Space for Truck</h4>
+                <input type="text" id="truckSpace" disabled class="input mb-4">
+                <h4>Available Space for Motocycle</h4>
+                <input type="text" id="motorCycleSpace" disabled class="input mb-4">
+                <h4>Available Space for Microbus</h4>
+                <input type="text" id="microSpace" disabled class="input mb-4">
+                <h4>Available Space for Passanger</h4>
+                <input type="text" id="passangerSpace" disabled class="input">
+            </center>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function show()
+        {
+            const ticketFor= $('#ticketFor').find(":selected").text();
+
+            console.log(ticketFor);
+
+            const passangerInfo = $("#passangerInfoInput");
+            const vehicleInfo = $("#vehicleInfoInput");
+
+
+            if(ticketFor === "Bus" || ticketFor === "Truck" || ticketFor==="Microbus"|| ticketFor==="Motorbike"){
+                passangerInfo.hide();
+                vehicleInfo.show();
+                $(".btn").show();
+
+            }
+            if(ticketFor === "Passanger")
+            {
+                passangerInfo.show();
+                vehicleInfo.hide();
+                $(".btn").show();
+            }
+        }  
+    </script>
+
+    <script>
+        function fatchData(){
+            let selectTag = $("#ferryName > option").length;
+            console.log(selectTag);
+            if(selectTag>0){
+                    $("#ferryName").empty();
+            }
+            let ferryTime = $("#timeSchedule").val();
+            console.log("selected");
+            fetch('ferryName',{
+                method:"POST",
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({data:ferryTime})
+            }).then(res=>res.json()).then(data=>{
+                let getFerryName = data.data;
+                console.log(getFerryName);
+
+
+                let option = $(`<option value="">--Choose Option--</option>`)
+                $("#ferryName").append(option);
+                
+                getFerryName.forEach(element => {
+                    let option = $(`<option>${element.ferryName}</option>`)
+                    $("#ferryName").append(option);
+                    console.log(element);
+                    
+                });
+                
+            })
+        }
+    </script>
+    <script>
+        function fatchSpace(){
+            let ferryTime = $("#timeSchedule").val();
+            fetch('ferryName',{
+                method:"POST",
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({data:ferryTime})
+            }).then(res=>res.json()).then(data=>{
+                let getFerryName = data.data;
+                getFerryName.forEach(element => {
+                    if(element.ferryName === $("#ferryName").val() && element.ferryTime === $("#timeSchedule").val()){
+                        let availableSpace = parseInt(element.space);
+                        let spaceForBusTruck = availableSpace /1000000;
+                        let spcaeForMicro = availableSpace / 5000;
+                        let spaceForMotorBike = availableSpace / 100;
+                        let spaceForPassanger = availableSpace / 65;
+
+                        $("#busSpace").val(Math.floor(spaceForBusTruck));
+                        $("#truckSpace").val(Math.floor(spaceForBusTruck));
+                        $("#motorCycleSpace").val(Math.floor(spaceForMotorBike));
+                        $("#microSpace").val(Math.floor(spcaeForMicro));
+                        $("#passangerSpace").val(Math.floor(spaceForPassanger));
+                    }
+                    
+                });
+                
+            })
+        }
+    </script>
+</body>
+</html>

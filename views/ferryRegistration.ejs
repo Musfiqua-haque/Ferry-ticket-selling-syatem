@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="/css/admincss/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Admin Dashboard</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+
+                        <!-- Employee Information Nav Start-->
+                        <div class="sb-sidenav-menu-heading">Dashboard</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Employee
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/employeelist" cursor="pointer">Employee List</a>
+                            </nav>
+                        </div>
+
+                        <!-- Employee Information Nav End-->
+
+
+                        <!-- Ferry Information Nav Start-->
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFerry"
+                            aria-expanded="false" aria-controls="collapseFerry">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Ferry
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseFerry" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/ferrylist" cursor="pointer">Ferry List</a>
+                                <a class="nav-link" href="/addFerryName" cursor="pointer">Add Ferry Name</a>
+                                <a class="nav-link" href="/addFerryRoute" cursor="pointer">Add Route Name</a>
+                                <a class="nav-link" href="/addTimeSchedule" cursor="pointer">Add Time Schedule</a>
+                            </nav>
+                        </div>
+
+                        <!-- Ferry Information Nav End-->
+
+                        <!-- Ticket Information Nav Start-->
+
+                        <a class="nav-link" href="/ticketinfo">Ticket</a>
+
+
+                        <!-- Ticket Information Nav End-->
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        <!-- Content Section Start -->
+        <div id="layoutSidenav_content">
+            <main>
+
+                <!-- Ferry Registration Start -->
+
+                <div id="ferryRegistration" style="min-height: 100vh;width: 100%;">
+
+
+                    <h1 style="color:black;text-align:center;margin-top:30px">Register Schedule</h1>
+                    <form method="post" action="/ferryRegistration" style="margin: auto;width: 70%;">
+
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Ferry Name</label>
+                            <select name="ferryName" id="" class="form-select">
+                                <% if(ferryName.length>0){ %>
+                                    <% for(let i =0;i<ferryName.length;i++){ %>
+                                        <option value="<%= ferryName[i].ferryName %>"><%= ferryName[i].ferryName %></option>
+                                    <%}%>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Route</label>
+                            <select name="ferryRoute" id="" class="form-select">
+                                <% if(routeName.length>0){ %>
+                                    <% for(let i =0;i<routeName.length;i++){ %>
+                                        <option value="<%= routeName[i].routeName %>"><%= routeName[i].routeName %></option>
+                                    <%}%>
+                                <%}%>
+                            </select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Time Schedule</label>
+                            <select name="ferryTime" id="" class="form-select">
+                                <% if(times.length>0){ %>
+                                    <% for(let i =0;i<times.length;i++){ %>
+                                        <option value="<%= times[i].timeSchedule %>"><%= times[i].timeSchedule %></option>
+                                    <%}%>
+                                <%}%>
+                            </select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateInput" class="form-label">Date</label>
+                            <input type="date" name="dateInput" class="form-control" id="dateInput" aria-describedby="nameHelp" required>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mb-3">Register</button>
+                    </form>
+                </div>
+
+                <!-- Ferry Registration End -->
+            </main>
+        </div>
+        
+
+        <!-- Content Section End -->
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Musfiqua Haque Website 2022</div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/js/adminjs/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="/js/adminjs/datatables-simple-demo.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        let employeeList = document.getElementById('employeeList');
+        let ferryList = document.getElementById('ferryList');
+        let ticketInfo = document.getElementById('ticketInfo');
+        let aboutInfo = document.getElementById('aboutInfo');
+        let employeeRegistration = document.getElementById('employeeRegistration');
+        let ferryRegistration = document.getElementById('ferryRegistration');
+
+        function show(x) {
+            if (x == 1) {
+                employeeList.style.display = 'none';
+                ferryList.style.display = 'none';
+                ticketInfo.style.display = 'none';
+                employeeRegistration.style.display = 'block';
+                ferryRegistration.style.display = 'none';
+            }
+            if (x == 2) {
+                employeeList.style.display = 'none';
+                ferryList.style.display = 'none';
+                ticketInfo.style.display = 'none';
+                employeeRegistration.style.display = 'none';
+                ferryRegistration.style.display = 'block';
+            }
+            if (x == 3) {
+                employeeList.style.display = 'block';
+                ferryList.style.display = 'none';
+                ticketInfo.style.display = 'none';
+                employeeRegistration.style.display = 'none';
+                ferryRegistration.style.display = 'none';
+            }
+            if (x == 4) {
+                employeeList.style.display = 'none';
+                ferryList.style.display = 'block';
+                ticketInfo.style.display = 'none';
+                employeeRegistration.style.display = 'none';
+                ferryRegistration.style.display = 'none';
+            }
+            if (x == 5) {
+                employeeList.style.display = 'none';
+                ferryList.style.display = 'none';
+                ticketInfo.style.display = 'block';
+                employeeRegistration.style.display = 'none';
+                ferryRegistration.style.display = 'none';
+            }
+        }
+
+
+
+    </script>
+
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#dateInput').attr('min',today);
+</script>
+</body>
+
+</html>

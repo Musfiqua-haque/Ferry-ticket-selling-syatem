@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.container {
+  /* background-image: url(/img/images/ship.jpg); */
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
+  background-position: center;
+  
+  background-size: cover;
+}
+
+#header {
+  text-align: center;
+  background-color: rgb(110, 218, 218);
+
+  width: 100%;
+  height: 60px;
+}
+
+.form {
+
+  margin-left: 60px;
+  margin-top: 30px;
+  width: 650px;
+  height: 460px;
+  float: left;
+  border: 2px solid rgb(67, 168, 177);
+  background-color: rgba(0,0,0,0.5) !important;
+  
+}
+
+#ticket {
+  font-size: 20px;
+  margin-left: 20px;
+  color: white;
+  
+}
+select {
+  width: 150px;
+  height: 50px;
+  margin-top: 20px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.ticket-left {
+  float: leftt;
+  color: white;
+}
+
+.ticket-right {
+  float: right;
+  margin-top: -15%;
+  margin-right: 4%;
+  color: white;
+}
+.ticket-last {
+  float: right;
+  margin-right: 4%;
+  color: white;
+}
+
+.pass-info {
+  border: 2px solid white;
+  width: 300px;
+  height: 200px;
+  margin-left: 20px;
+  text-align: center;
+  display: none;
+}
+
+.pass-info h3 {
+  font-size: 30px;
+  text-align: center;
+}
+.pass-info lebel {
+  font-size: 20px;
+  margin-left: 20px;
+  /* margin-bottom: 60px; */
+}
+
+.pass-info input {
+  width: 150px;
+  height: 15px;
+  padding: 5px;
+  margin-top: 15px;
+}
+
+.vehicle-info {
+  border: 2px solid white;
+  width: 330px;
+  height: 140px;
+  margin-top: 15px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.vehicle-info h3 {
+  font-size: 30px;
+  text-align: center;
+}
+.vehicle-info lebel {
+  font-size: 20px;
+  margin-left: 20px;
+  /* margin-bottom: 60px; */
+}
+
+.vehicle-info input {
+  width: 150px;
+  height: 15px;
+  padding: 5px;
+  margin-top: 10px;
+}
+.footer {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.footer input {
+  margin-top: 10px;
+  width: 130px;
+  height: 25px;
+  border-radius: 5px;
+  text-align: center;
+}
+.footer h3{
+  color: white;
+}
+
+.btn {
+  width: 90px;
+  height: 40px;
+  border: 2ps solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  float: right;
+  position: fixed;
+  top: 475px;
+  left: 44%;
+  background-color: rgb(219, 141, 141);
+}
+
+.print-btn {
+  width: 90px;
+  height: 40px;
+  border: 2ps solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  float: left;
+  margin-left: 15px;
+  position: fixed;
+  top: 475px;
+  background-color: rgb(219, 141, 141);
+}
+
+.left-weight {
+  width: 400px;
+  height: 460px;
+  background-color: rgba(0,0,0,0.5) !important;
+  float: right;
+  margin-right: 60px;
+  margin-top: 30px;
+}
+
+.left-weight h3 {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 20px;
+}
+.left-weight p {
+  margin-left: 40px;
+  margin-top: 5px;
+  width: 80%;
+  height: 30px;
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #e14949;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  min-height: 70vh;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+#sTicket {
+  width: 100%;
+  min-height: 80%;
+  margin:0 auto;
+}
+
+#pTicket{
+  width: 80%;
+  margin: auto; 
+  margin-top: 40px; 
+  display:none;
+}
+#pTicket h1{
+  text-align: center;
+}
+
+.row{
+  width: 90%;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* modal end */
